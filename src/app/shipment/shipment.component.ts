@@ -6,15 +6,15 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./shipment.component.css'],
 })
 export class ShipmentComponent implements OnInit {
-  shipment: any;
+  shipments: any;
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.http.get('http://localhost:3000/shipments').subscribe((response) => {
-      this.shipment = response;
+      this.shipments = response;
     });
   }
   getShipments(): void {
-    console.log(this.shipment);
+    console.log(this.shipments);
   }
 }
