@@ -1,4 +1,15 @@
-<button (click)="getShipments()">shipment</button>
-<li>
-  {{ shipment }}
-</li>
+<div class="shipments">
+  <ul class="shipment">
+    <a
+      *ngFor="
+        let shipment of shipments
+          | paginate
+            : { itemsPerPage: 20, currentPage: page, totalItems: totalLength }
+      "
+      routerLink="/shipment/{{ shipment.id }}"
+    >
+      {{ shipment.id }}
+    </a>
+  </ul>
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>

@@ -6,15 +6,19 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./shipment.component.css'],
 })
 export class ShipmentComponent implements OnInit {
+  private url = 'http://localhost:3000/shipments/';
   shipments: any;
+  totalLength: any;
+  page: number = 1;
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get('http://localhost:3000/shipments').subscribe((response) => {
-      this.shipments = response;
-    });
+    this.getShipments();
   }
   getShipments(): void {
-    console.log(this.shipments);
+    this.http.get<any[]>(this.url).subscribe((response) => {
+      this.shipments = response;
+      this.totalLength = response.length;
+    });
   }
 }

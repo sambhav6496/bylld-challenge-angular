@@ -1,0 +1,4 @@
+.shipment {
+  display: flex;
+  flex-direction: column;
+}
