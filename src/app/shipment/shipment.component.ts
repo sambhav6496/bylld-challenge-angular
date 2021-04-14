@@ -1,20 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ShipmentService } from '../shipment.service';
+
 @Component({
   selector: 'app-shipment',
   templateUrl: './shipment.component.html',
   styleUrls: ['./shipment.component.css'],
 })
 export class ShipmentComponent implements OnInit {
-  shipment: any;
-  constructor(private http: HttpClient) {}
+  shipments: any;
+  totalLength: any;
+  page: number = 1;
+  constructor(private shipmentService: ShipmentService) {}
 
   ngOnInit(): void {
-    this.http.get('http://localhost:3000/shipments').subscribe((response) => {
-      this.shipment = response;
-    });
+    this.getShipments();
   }
   getShipments(): void {
-    console.log(this.shipment);
+    this.shipmentService.getShipments().subscribe((shipments) => {
+      this.shipments = shipments;
+      this.totalLength = shipments.length;
+    });
   }
 }

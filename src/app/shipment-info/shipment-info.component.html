@@ -1,0 +1,7 @@
+<div *ngIf="shipment; else elseBlock">
+  <div class="shipment">
+    <p><span>Id:</span>{{ shipment.id }}</p>
+    <p><span>Name:</span>{{ shipment.name }}</p>
+  </div>
+</div>
+<ng-template #elseBlock>Shipment details is loading</ng-template>
