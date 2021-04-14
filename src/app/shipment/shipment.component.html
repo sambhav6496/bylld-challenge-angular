@@ -1,15 +1,19 @@
-<div class="shipments">
-  <ul class="shipment">
-    <a
-      *ngFor="
-        let shipment of shipments
-          | paginate
-            : { itemsPerPage: 20, currentPage: page, totalItems: totalLength }
-      "
-      routerLink="/shipment/{{ shipment.id }}"
-    >
-      {{ shipment.id }}
-    </a>
-  </ul>
-  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+<form action=""></form>
+<div *ngIf="shipments; else elseBlock">
+  <div class="shipments">
+    <ul class="shipment">
+      <a
+        *ngFor="
+          let shipment of shipments
+            | paginate
+              : { itemsPerPage: 20, currentPage: page, totalItems: totalLength }
+        "
+        routerLink="/shipment/{{ shipment.id }}"
+      >
+        {{ shipment.id }}
+      </a>
+    </ul>
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
 </div>
+<ng-template #elseBlock><h2>Loading..</h2></ng-template>

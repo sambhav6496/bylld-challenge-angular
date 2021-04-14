@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ShipmentService } from '../shipment.service';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { ShipmentComponent } from '../shipment/shipment.component';
+import { getLocaleDateFormat, Location } from '@angular/common';
 
 @Component({
   selector: 'app-shipment-info',
@@ -10,12 +9,11 @@ import { ShipmentComponent } from '../shipment/shipment.component';
   styleUrls: ['./shipment-info.component.css'],
 })
 export class ShipmentInfoComponent implements OnInit {
-  private url = 'http://localhost:3000/shipments';
   shipment: any;
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private http: HttpClient
+    private shipmentService: ShipmentService
   ) {}
 
   ngOnInit(): void {
@@ -23,11 +21,8 @@ export class ShipmentInfoComponent implements OnInit {
   }
   getShipment(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    const shipmentUrl = `${this.url}/${id}`;
-    console.log(shipmentUrl);
-    this.http.get<any[]>(shipmentUrl).subscribe((response) => {
-      this.shipment = response;
-      console.log(this.shipment);
+    this.shipmentService.getShipment(id).subscribe((shipment) => {
+      this.shipment = shipment;
     });
   }
 }

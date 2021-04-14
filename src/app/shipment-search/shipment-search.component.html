@@ -1,0 +1,22 @@
+<!-- <div id="search-component">
+  <label for="search-box">shipment Search</label>
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+  <ul class="search-result">
+    <li *ngFor="let shipment of shipments$ | async">
+      <a routerLink="/shipments/{{ shipment.id }}">
+        {{ shipment.name }}
+      </a>
+    </li>
+  </ul>
+</div> -->
+<p>
+  <input type="text" id="id" name="id" [(ngModel)]="id" />
+</p>
+<button type="button" (click)="clickme()">Clickme</button>
+<div *ngIf="shipment">
+  <div class="shipment">
+    <p><span>Id:</span>{{ shipment.id }}</p>
+    <p><span>Name:</span>{{ shipment.name }}</p>
+  </div>
+</div>
